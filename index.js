@@ -59,8 +59,9 @@ const isHiddenUnit = (unitName) => {
 }
 
 const readDir = (pathToDir) => {
-    const dirObject = {};
-    fs.readdirSync(pathToDir)
+    let dirObject = {};
+    try {
+        fs.readdirSync(pathToDir)
         .filter(element => !isHiddenUnit(element))
         .forEach(element => {
             const elementPath = path.resolve(pathToDir, element);
@@ -74,6 +75,9 @@ const readDir = (pathToDir) => {
                 dirObject[elementName] = NOT_DIR_CHAR;
             }
         });
+    } catch (error) {
+        dirObject = {};
+    }
     return dirObject;
 }
 
