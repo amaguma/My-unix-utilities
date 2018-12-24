@@ -74,7 +74,7 @@ const wc = (args, content, filePathInput) => {
 }
 
 
-const input = process.argv;
+const input = process.argv.slice(2);
 
 if (!process.stdin.isTTY) {
     let content = '';
